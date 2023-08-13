@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.spacecraftapi.model.SpacePort;
-import com.example.spacecraftapi.repository.SpacePortRepository;
+import com.example.spacecraftapi.model.Volunteer;
+import com.example.spacecraftapi.repository.VolunteerRepository;
 
 @RestController
-@RequestMapping("/spaceports")
-public class SpacePortController {
-
+@RequestMapping("/volunteers")
+public class VolunteerController {
+    
     @Autowired
-    private SpacePortRepository spacePortRepository;
+    private VolunteerRepository volunteerRepository;
 
     @GetMapping
-    public List<SpacePort> getAllSpacePorts() {
-        return (List<SpacePort>) spacePortRepository.findAll();
+    public List<Volunteer> getAllVolunteers() {
+        return (List<Volunteer>) volunteerRepository.findAll();
     }
+    
 
     @GetMapping("/{id}")
-    public ResponseEntity<SpacePort> getSpacePortById(@PathVariable Long id) {
-        Optional<SpacePort> spacePort = spacePortRepository.findById(id);
+    public ResponseEntity<Volunteer> getVolunteerById(@PathVariable Long id) {
+        Optional<Volunteer> spacePort = volunteerRepository.findById(id);
         return spacePort.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-
+    
 }

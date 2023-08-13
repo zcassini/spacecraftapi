@@ -9,25 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.spacecraftapi.model.CargoShip;
-import com.example.spacecraftapi.repository.CargoShipRepository;
+import com.example.spacecraftapi.model.SpaceCraft;
+import com.example.spacecraftapi.repository.SpaceCraftRepository;
 
 @RestController
-@RequestMapping("/cargoships")
-public class CargoShipController {
-    
+@RequestMapping("/spacecrafts")
+public class SpaceCraftController {
+
     @Autowired // depenpency injection
-    private CargoShipRepository cargoShipRepository;
+    private SpaceCraftRepository cargoShipRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<CargoShip> getCargoShipById(@PathVariable Long id) {
-        Optional<CargoShip> cargoShip = cargoShipRepository.findById(id);
+    public ResponseEntity<SpaceCraft> getCargoShipById(@PathVariable Long id) {
+        Optional<SpaceCraft> cargoShip = cargoShipRepository.findById(id);
         return cargoShip.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // @GetMapping("/name/{name}")
-    // public ResponseEntity<List<CargoShip>> getCargoShipsBy(@PathVariable String name) {
-        
-
-    // }
-    }
+}
